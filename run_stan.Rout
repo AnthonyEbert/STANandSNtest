@@ -1,0 +1,173 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> 
+> library(rstan)
+Loading required package: StanHeaders
+Loading required package: ggplot2
+rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+> library(sn)
+Loading required package: stats4
+
+Attaching package: ‘sn’
+
+The following object is masked from ‘package:stats’:
+
+    sd
+
+> 
+> n = 1000
+> 
+> x <- as.numeric(sn::rsn(n, 10, 0.25, 0.5))
+> 
+> datastan <- list(N = n, x = x)
+> fit <- stan(
++   file = "skew_normal.stan",
++   data = datastan,
++   iter = 1000,
++   chains = 4,
++   pars = c("sigma", "gamma")
++ )
+
+SAMPLING FOR MODEL 'skew_normal' NOW (CHAIN 1).
+Chain 1: 
+Chain 1: Gradient evaluation took 7.8e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.78 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Iteration:   1 / 1000 [  0%]  (Warmup)
+Chain 1: Iteration: 100 / 1000 [ 10%]  (Warmup)
+Chain 1: Iteration: 200 / 1000 [ 20%]  (Warmup)
+Chain 1: Iteration: 300 / 1000 [ 30%]  (Warmup)
+Chain 1: Iteration: 400 / 1000 [ 40%]  (Warmup)
+Chain 1: Iteration: 500 / 1000 [ 50%]  (Warmup)
+Chain 1: Iteration: 501 / 1000 [ 50%]  (Sampling)
+Chain 1: Iteration: 600 / 1000 [ 60%]  (Sampling)
+Chain 1: Iteration: 700 / 1000 [ 70%]  (Sampling)
+Chain 1: Iteration: 800 / 1000 [ 80%]  (Sampling)
+Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)
+Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 0.249774 seconds (Warm-up)
+Chain 1:                0.190912 seconds (Sampling)
+Chain 1:                0.440686 seconds (Total)
+Chain 1: 
+
+SAMPLING FOR MODEL 'skew_normal' NOW (CHAIN 2).
+Chain 2: 
+Chain 2: Gradient evaluation took 8.3e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.83 seconds.
+Chain 2: Adjust your expectations accordingly!
+Chain 2: 
+Chain 2: 
+Chain 2: Iteration:   1 / 1000 [  0%]  (Warmup)
+Chain 2: Iteration: 100 / 1000 [ 10%]  (Warmup)
+Chain 2: Iteration: 200 / 1000 [ 20%]  (Warmup)
+Chain 2: Iteration: 300 / 1000 [ 30%]  (Warmup)
+Chain 2: Iteration: 400 / 1000 [ 40%]  (Warmup)
+Chain 2: Iteration: 500 / 1000 [ 50%]  (Warmup)
+Chain 2: Iteration: 501 / 1000 [ 50%]  (Sampling)
+Chain 2: Iteration: 600 / 1000 [ 60%]  (Sampling)
+Chain 2: Iteration: 700 / 1000 [ 70%]  (Sampling)
+Chain 2: Iteration: 800 / 1000 [ 80%]  (Sampling)
+Chain 2: Iteration: 900 / 1000 [ 90%]  (Sampling)
+Chain 2: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 0.228024 seconds (Warm-up)
+Chain 2:                0.184189 seconds (Sampling)
+Chain 2:                0.412213 seconds (Total)
+Chain 2: 
+
+SAMPLING FOR MODEL 'skew_normal' NOW (CHAIN 3).
+Chain 3: 
+Chain 3: Gradient evaluation took 7.6e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.76 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 3: Iteration:   1 / 1000 [  0%]  (Warmup)
+Chain 3: Iteration: 100 / 1000 [ 10%]  (Warmup)
+Chain 3: Iteration: 200 / 1000 [ 20%]  (Warmup)
+Chain 3: Iteration: 300 / 1000 [ 30%]  (Warmup)
+Chain 3: Iteration: 400 / 1000 [ 40%]  (Warmup)
+Chain 3: Iteration: 500 / 1000 [ 50%]  (Warmup)
+Chain 3: Iteration: 501 / 1000 [ 50%]  (Sampling)
+Chain 3: Iteration: 600 / 1000 [ 60%]  (Sampling)
+Chain 3: Iteration: 700 / 1000 [ 70%]  (Sampling)
+Chain 3: Iteration: 800 / 1000 [ 80%]  (Sampling)
+Chain 3: Iteration: 900 / 1000 [ 90%]  (Sampling)
+Chain 3: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 0.220629 seconds (Warm-up)
+Chain 3:                0.21291 seconds (Sampling)
+Chain 3:                0.433539 seconds (Total)
+Chain 3: 
+
+SAMPLING FOR MODEL 'skew_normal' NOW (CHAIN 4).
+Chain 4: 
+Chain 4: Gradient evaluation took 7.5e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.75 seconds.
+Chain 4: Adjust your expectations accordingly!
+Chain 4: 
+Chain 4: 
+Chain 4: Iteration:   1 / 1000 [  0%]  (Warmup)
+Chain 4: Iteration: 100 / 1000 [ 10%]  (Warmup)
+Chain 4: Iteration: 200 / 1000 [ 20%]  (Warmup)
+Chain 4: Iteration: 300 / 1000 [ 30%]  (Warmup)
+Chain 4: Iteration: 400 / 1000 [ 40%]  (Warmup)
+Chain 4: Iteration: 500 / 1000 [ 50%]  (Warmup)
+Chain 4: Iteration: 501 / 1000 [ 50%]  (Sampling)
+Chain 4: Iteration: 600 / 1000 [ 60%]  (Sampling)
+Chain 4: Iteration: 700 / 1000 [ 70%]  (Sampling)
+Chain 4: Iteration: 800 / 1000 [ 80%]  (Sampling)
+Chain 4: Iteration: 900 / 1000 [ 90%]  (Sampling)
+Chain 4: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 0.225658 seconds (Warm-up)
+Chain 4:                0.183334 seconds (Sampling)
+Chain 4:                0.408992 seconds (Total)
+Chain 4: 
+> 
+> print(fit)
+Inference for Stan model: skew_normal.
+4 chains, each with iter=1000; warmup=500; thin=1; 
+post-warmup draws per chain=500, total post-warmup draws=2000.
+
+        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+sigma   0.25    0.00 0.01   0.24   0.25   0.25   0.25   0.26  1128    1
+gamma   0.46    0.00 0.04   0.38   0.43   0.46   0.50   0.55  1277    1
+lp__  940.76    0.03 0.98 937.97 940.35 941.07 941.46 941.73   851    1
+
+Samples were drawn using NUTS(diag_e) at Mon May  3 20:39:02 2021.
+For each parameter, n_eff is a crude measure of effective sample size,
+and Rhat is the potential scale reduction factor on split chains (at 
+convergence, Rhat=1).
+> 
+> saveRDS(fit, file = "fit.rds")
+> 
+> proc.time()
+   user  system elapsed 
+  7.693   0.488   7.727 
